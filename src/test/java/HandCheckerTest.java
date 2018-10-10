@@ -86,4 +86,15 @@ public class HandCheckerTest {
         assertEquals(true, handChecker.isFullHouse(c));
     }
 
+    //check flush
+    public boolean isFlush(List<Card> c) {
+        if (validSize(c)) {
+            sortSuit(c);
+            if (c.get(0).getSuit() == c.get(c.size() - 1).getSuit()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
