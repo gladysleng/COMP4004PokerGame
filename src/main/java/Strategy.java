@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Strategy {
@@ -116,5 +118,41 @@ public class Strategy {
         return discardedCard;
     }
 
+    private int returnRankForNumberOfCards(List<Card> c, int numOfSpecificCardInList) {
 
+        int requestedRank = 0;
+        HashMap<Integer, Integer> rankBucket = new HashMap<Integer, Integer>();
+        Integer count;
+
+        for (Card currentCard : c) {
+            count = rankBucket.get(currentCard.getRank());
+            if (count == null) {
+                count = 0;
+            }
+            rankBucket.put(currentCard.getRank(), ++count);
+        }
+
+        for (Map.Entry<Integer, Integer> entry : rankBucket.entrySet()) {
+            if (entry.getValue() == numOfSpecificCardInList) {
+                requestedRank = entry.getKey();
+            }
+        }
+        return requestedRank;
+    }
+    public List<Card> changeThreeCardsForOnePair(List<Card> c, List<Card> cardsToChange) {
+        List<Card> discardedCard = new ArrayList<Card>();
+        int rankInPairs = returnRankForNumberOfCards(c, 2);
+
+        handChecker.sortHand(c);
+        for (int i = 0; i < c.size(); i++) {
+            if (!(c.get(i).getRank() == rankInPairs)) {
+                discardedCard.add(c.get(i));
+            }
+        }
+        c.removeAll(discardedCard);
+        c.addAll(cardsToChange);
+        handChecker.sortHand(c);
+        return discardedCard;
+
+    }
 }
