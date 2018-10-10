@@ -188,4 +188,61 @@ public class Strategy {
         return discardedCard;
     }
 
+
+    //test for this is covered for change one card for fullHouse in the twoPairs if statement
+    public List<Card> changeOneCardForTwoPairs(List<Card> c, List<Card> cardsToChange) {
+        int rankWithoutPairs = returnRankForNumberOfCards(c, 1);
+        List<Card> discardedCard = new ArrayList<Card>();
+
+        for (int i = 0; i < c.size(); i++) {
+            if (c.get(i).getRank() == rankWithoutPairs) {
+                discardedCard.add(c.remove(i));
+                break;
+            }
+        }
+        c.addAll(cardsToChange);
+        handChecker.sortHand(c);
+        return discardedCard;
+    }
+
+
+    public List<Card> changeCardsForFullHouse(List<Card> c, List<Card> cardsToChange) {
+        List<Card> discardedCard = new ArrayList<Card>();
+        if (handChecker.isTwoPair(c)) {
+            discardedCard = changeOneCardForTwoPairs(c, cardsToChange);
+
+        } else {
+
+            discardedCard = changeTwoCardsForThreeOfAKind(c, cardsToChange);
+
+        }
+        handChecker.sortHand(c);
+        return discardedCard;
+
+    }
+    //private because it is never gonna run because of the strategy from the requirement
+    //cards with three same rank will enter fullhouse and change one card instead of this function
+    private List<Card> changeTwoCardsForThreeOfAKind(List<Card> c, List<Card> cardsToChange) {
+        List<Card> discardedCard = new ArrayList<Card>();
+        handChecker.sortHand(c);
+
+        //22234
+        if ((c.get(0).getRank() == c.get(2).getRank())) {
+            discardedCard.add(c.remove(4));
+            discardedCard.add(c.remove(3));
+        }
+        //34445
+        else if ((c.get(1).getRank() == c.get(3).getRank())) {
+            discardedCard.add(c.remove(c.size()-1));
+            discardedCard.add(c.remove(0));
+        }
+        //56444
+        else if ((c.get(2).getRank() == c.get(4).getRank())) {
+            discardedCard.add(c.remove(0));
+            discardedCard.add(c.remove(0));
+        }
+        c.addAll(cardsToChange);
+        handChecker.sortHand(c);
+        return discardedCard;
+    }
 }
