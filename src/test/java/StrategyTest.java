@@ -680,5 +680,104 @@ public class StrategyTest {
         assertEquals(expectedOutput, c);
         assertDiscardedCards(expectedDiscardedCards, discardedCards);
     }
+    @org.junit.Test
+    public void changeTwoCardsForThreeInSequenceTest_FirstThree(){
+        List<Card> cardsToExchange = createHand(new int[][]{
+                {2, 7},
+                {2, 12},
+        });
+
+        List<Card> c = createHand(new int[][]{
+                {3, 4},
+                {2, 10},
+                {3, 3},
+                {4, 2},
+                {1, 14}
+        });
+
+        List<Card> expectedDiscardedCards = createExpectedHand(new Card[]{
+                c.get(4),
+                c.get(1)
+        });
+
+        List<Card> expectedOutput = createExpectedHand(new Card[]{
+                c.get(3),
+                c.get(2),
+                c.get(0),
+                cardsToExchange.get(0),
+                cardsToExchange.get(1)
+        });
+
+        List<Card> discardedCards = strategy.changeTwoCardsForThreeInSequence(c, cardsToExchange);
+        assertEquals(expectedOutput, c);
+        assertDiscardedCards(expectedDiscardedCards, discardedCards);
+    }
+
+    @org.junit.Test
+    public void changeTwoCardsForThreeInSequenceTest_MiddleThree(){
+        List<Card> cardsToExchange = createHand(new int[][]{
+                {2, 7},
+                {2, 12},
+        });
+
+        List<Card> c = createHand(new int[][]{
+                {3, 7},
+                {2, 8},
+                {3, 4},
+                {4, 9},
+                {1, 14}
+        });
+
+        List<Card> expectedDiscardedCards = createExpectedHand(new Card[]{
+                c.get(4),
+                c.get(2)
+        });
+
+        List<Card> expectedOutput = createExpectedHand(new Card[]{
+                c.get(3),
+                c.get(1),
+                c.get(0),
+                cardsToExchange.get(0),
+                cardsToExchange.get(1)
+        });
+
+        List<Card> discardedCards = strategy.changeTwoCardsForThreeInSequence(c, cardsToExchange);
+        assertEquals(expectedOutput, c);
+        assertDiscardedCards(expectedDiscardedCards, discardedCards);
+    }
+
+    @org.junit.Test
+    public void changeTwoCardsForThreeInSequenceTest_LastThree(){
+        List<Card> cardsToExchange = createHand(new int[][]{
+                {2, 7},
+                {2, 12},
+        });
+
+        List<Card> c = createHand(new int[][]{
+                {3, 7},
+                {2, 8},
+                {3, 5},
+                {4, 9},
+                {1, 2}
+        });
+
+        List<Card> expectedDiscardedCards = createExpectedHand(new Card[]{
+                c.get(4),
+                c.get(2)
+        });
+
+        List<Card> expectedOutput = createExpectedHand(new Card[]{
+                c.get(3),
+                c.get(1),
+                c.get(0),
+                cardsToExchange.get(0),
+                cardsToExchange.get(1)
+        });
+
+        List<Card> discardedCards = strategy.changeTwoCardsForThreeInSequence(c, cardsToExchange);
+        assertEquals(expectedOutput, c);
+        assertDiscardedCards(expectedDiscardedCards, discardedCards);
+    }
+
 
 }
