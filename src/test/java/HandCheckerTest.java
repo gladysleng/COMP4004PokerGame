@@ -61,4 +61,29 @@ public class HandCheckerTest {
         assertEquals(expectedOutput, c);
 
     }
+
+    @org.junit.Test
+    public void isFullHouseAABBBTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {4, 10},
+                {2, 12},
+                {1, 12},
+                {1, 10},
+                {3, 12}
+        });
+        assertEquals(true, handChecker.isFullHouse(c));
+    }
+
+    @org.junit.Test
+    public void isFullHouseAAABBTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {4, 10},
+                {2, 10},
+                {1, 12},
+                {3, 12},
+                {1, 10}
+        });
+        assertEquals(true, handChecker.isFullHouse(c));
+    }
+    
 }
