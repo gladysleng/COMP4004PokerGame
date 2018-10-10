@@ -85,5 +85,5 @@ public class HandCheckerTest {
         });
         assertEquals(true, handChecker.isFullHouse(c));
     }
-    
+
 }

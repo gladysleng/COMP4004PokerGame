@@ -43,4 +43,30 @@ public class HandChecker {
         });
     }
 
+    //check for full house
+    public boolean isFullHouse(List<Card> c) {
+        if (validSize(c)) {
+            sortHand(c);
+
+            boolean c1;
+            boolean c2;
+
+            // check the case for AAA22
+            c1 = c.get(0).getRank() == c.get(1).getRank() &&
+                    c.get(1).getRank() == c.get(2).getRank() &&
+                    c.get(3).getRank() == c.get(4).getRank();
+
+            // check the case for AA444
+            c2 = c.get(0).getRank() == c.get(1).getRank() &&
+                    c.get(2).getRank() == c.get(3).getRank() &&
+                    c.get(3).getRank() == c.get(4).getRank();
+
+
+            return (c1 || c2);
+        }
+
+        return false;
+    }
+
+
 }
