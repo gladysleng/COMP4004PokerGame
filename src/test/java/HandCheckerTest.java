@@ -787,5 +787,31 @@ public class HandCheckerTest {
         assertEquals(true, handChecker.oneCardFromFlush(c));
     }
 
+    @org.junit.Test
+    public void oneCardFromFullHouse_TwoPairsTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {3, 10},
+                {3, 11},
+                {3, 2},
+                {2, 10},
+                {4, 11}
+        });
+        assertEquals(true, handChecker.oneCardFromFullHouse(c));
+
+    }
+
+    @org.junit.Test
+    public void oneCardFromFullHouse_ThreeOfAKindTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {3, 10},
+                {3, 11},
+                {3, 2},
+                {2, 10},
+                {4, 10}
+        });
+        assertEquals(true, handChecker.oneCardFromFullHouse(c));
+
+    }
+    
 
 }
