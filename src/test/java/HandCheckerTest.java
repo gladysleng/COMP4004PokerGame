@@ -413,4 +413,101 @@ public class HandCheckerTest {
         assertEquals(true, handChecker.isOnePair(c));
     }
 
+    @org.junit.Test
+    public void isHighCard_notOnePairsTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 9},
+                {1, 9},
+                {3, 14},
+                {4, 5},
+                {2, 6}
+        });
+        assertEquals(false, handChecker.isHighCard(c));
+    }
+
+    @org.junit.Test
+    public void isHighCard_notThreeOfAKindTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 9},
+                {1, 9},
+                {3, 9},
+                {4, 5},
+                {2, 6}
+        });
+        assertEquals(false, handChecker.isHighCard(c));
+    }
+
+    @org.junit.Test
+    public void isHighCard_notFourOfAKindTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 9},
+                {1, 9},
+                {3, 9},
+                {4, 9},
+                {2, 6}
+        });
+        assertEquals(false, handChecker.isHighCard(c));
+    }
+
+    @org.junit.Test
+    public void isHighCard_notFullHouseTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 9},
+                {1, 9},
+                {3, 9},
+                {4, 6},
+                {2, 6}
+        });
+        assertEquals(false, handChecker.isHighCard(c));
+    }
+
+    @org.junit.Test
+    public void isHighCard_notStraightTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 10},
+                {1, 14},
+                {3, 11},
+                {4, 13},
+                {2, 12}
+        });
+        assertEquals(false, handChecker.isHighCard(c));
+    }
+
+    @org.junit.Test
+    public void isHighCard_notStraightFlushTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {2, 2},
+                {2, 5},
+                {2, 4},
+                {2, 3}
+        });
+        assertEquals(false, handChecker.isHighCard(c));
+    }
+
+    @org.junit.Test
+    public void isHighCard_notFlushTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {2, 5},
+                {2, 8},
+                {2, 3},
+                {2, 9}
+        });
+        assertEquals(false, handChecker.isHighCard(c));
+    }
+
+    @org.junit.Test
+    public void isHighCardTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {2, 5},
+                {3, 7},
+                {2, 3},
+                {2, 9}
+        });
+        assertEquals(true, handChecker.isHighCard(c));
+    }
+
+
 }
