@@ -360,5 +360,43 @@ public class HandChecker {
         return false;
     }
 
+    public void changeRankChangeForAce(List<Card> c) {
+        sortHand(c);
+        {
+            int counter = 0;
+            for (int i = 0; i < c.size() - 1; i++) {
+                if (c.get(i).getRank() >= 2 && c.get(i).getRank() <= 5) {
+                    counter++;
+                }
+            }
+            // if other four cards is in a range of 2345
+            if (counter == 4 || counter == 3) {
+                c.get(c.size() - 1).setRank(1);
+                sortHand(c);
+            }
 
+        }
+    }
+
+    public boolean oneCardFromStraight(List<Card> c) {
+        if (validSize(c)) {
+            sortHand(c);
+
+            // case Ace but with 2345 straight
+            if (c.get(c.size() - 1).getRank() == 14) {
+                changeRankChangeForAce(c);
+            }
+            if (isOnePair(c)) {
+                if (rangeOfFourOrThree((c.get(c.size() - 1).getRank()), (c.get(0).getRank()))) {
+                    return true;
+                }
+            } else {
+                if ((rangeOfFourOrThree((c.get(c.size() - 1).getRank()), (c.get(1).getRank()))) || (rangeOfFourOrThree((c.get(3).getRank()), (c.get(0).getRank())))) {
+                    return true;
+                }
+            }
+        }
+        return false;
+
+    }
 }
