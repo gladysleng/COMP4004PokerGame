@@ -21,6 +21,7 @@ public class HandCheckerTest {
         });
         assertEquals(5, c.size());
     }
+
     @org.junit.Test
     public void sortHandTest() {
         List<Card> c = CardTestHelper.createHand(new int[][]{
@@ -109,5 +110,55 @@ public class HandCheckerTest {
                 {4, 11}
         });
         assertEquals(false, handChecker.isFlush(c));
+
+    }
+
+    @org.junit.Test
+    public void isStraightFlushDifferentSuitsTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {4, 10},
+                {4, 14},
+                {3, 13},
+                {4, 12},
+                {2, 11}
+        });
+        assertEquals(false, handChecker.isStraightFlush(c));
+    }
+
+    @org.junit.Test
+    public void isStraightFlushTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 7},
+                {2, 4},
+                {2, 5},
+                {2, 6},
+                {2, 3}
+        });
+        assertEquals(true, handChecker.isStraightFlush(c));
+    }
+
+    @org.junit.Test
+    public void isStraightFlushAceToFiveWithFlushTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {2, 3},
+                {2, 5},
+                {2, 4},
+                {2, 2}
+        });
+        assertEquals(true, handChecker.isStraightFlush(c));
+    }
+
+    @org.junit.Test
+    public void isStraightFlush_RoyalFlushTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {2, 11},
+                {2, 10},
+                {2, 13},
+                {2, 12}
+        });
+        assertEquals(false, handChecker.isStraightFlush(c));
+    }
 
 }
