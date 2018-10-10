@@ -957,5 +957,64 @@ public class HandCheckerTest {
         assertEquals(false, handChecker.oneCardFromStraightFlush(c));
     }
 
+    @org.junit.Test
+    public void isThreeSameSuitTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {1, 14},
+                {3, 7},
+                {3, 8},
+                {3, 2}
+        });
+        assertEquals(true, handChecker.isThreeOfSameSuit(c));
+    }
+
+    @org.junit.Test
+    public void isThreeInSequenceTest_2XXX8() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 13},
+                {1, 11},
+                {3, 7},
+                {3, 3},
+                {3, 12}
+        });
+        assertEquals(true, handChecker.isThreeInSequence(c));
+    }
+
+    @org.junit.Test
+    public void isThreeInSequenceTest_XXX79() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 2},
+                {1, 4},
+                {3, 3},
+                {3, 10},
+                {3, 12}
+        });
+        assertEquals(true, handChecker.isThreeInSequence(c));
+    }
+
+    @org.junit.Test
+    public void isThreeInSequenceTest_35XXX_invalid() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 3},
+                {1, 9},
+                {3, 7},
+                {3, 6},
+                {3, 8}
+        });
+        assertEquals(false, handChecker.isThreeInSequence(c));
+    }
+
+    @org.junit.Test
+    public void isThreeInSequenceTest_35XXX_valid() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 3},
+                {1, 9},
+                {3, 7},
+                {3, 5},
+                {3, 8}
+        });
+        assertEquals(true, handChecker.isThreeInSequence(c));
+    }
 
 }
