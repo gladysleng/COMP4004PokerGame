@@ -292,4 +292,36 @@ public class HandChecker {
     }
 
 
+    public boolean rangeOfFourOrThree(int i1, int i2) {
+        return i1 - i2 == 4 || i1 - i2 == 3;
+    }
+
+    public boolean oneCardFromRoyalFlush(List<Card> c) {
+        if (validSize(c)) {
+            sortHand(c);
+
+            // check for pairs
+            if (isOnePair(c) && rangeOfFourOrThree(c.get(c.size() - 1).getRank(), c.get(0).getRank())) {
+                sortSuit(c);
+                //check 1 & 4 || check 2 & 5
+                if ((c.get(0).getSuit() == c.get(3).getSuit()) || (c.get(1).getSuit() == c.get(4).getSuit())) {
+                    return true;
+                }
+                // check for first is the odd card, following is 11,12,13,14
+            } else if ((!(c.get(0).getRank() >= 10 && c.get(0).getRank() <= 14))) {
+                for (int i = 1; i < c.size() - 1; i++) {
+
+                    if ((!(c.get(i).getRank() >= 10 && c.get(i).getRank() <= 14))) {
+                        return false;
+                    }
+
+                    if (c.get(i).getSuit() != c.get(i + 1).getSuit()) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
 }
