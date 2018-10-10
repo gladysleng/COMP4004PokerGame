@@ -141,4 +141,35 @@ public class HandChecker {
         return false;
     }
 
+
+    //check three of a kind
+    public boolean isThreeOfAKind(List<Card> c) {
+        if (validSize(c)) {
+            sortHand(c);
+
+            if (isFullHouse(c) || isFourOfAKind(c)) {
+                return false;
+            }
+
+            boolean a1, a2, a3;
+
+            //AAA23
+            a1 = c.get(0).getRank() == c.get(1).getRank() &&
+                    c.get(1).getRank() == c.get(2).getRank();
+
+            //67778
+            a2 = c.get(1).getRank() == c.get(2).getRank() &&
+                    c.get(2).getRank() == c.get(3).getRank();
+            //67888
+            a3 = c.get(2).getRank() == c.get(3).getRank() &&
+                    c.get(3).getRank() == c.get(4).getRank();
+
+
+            return (a1 || a2 || a3);
+        }
+
+        return false;
+    }
+
+
 }
