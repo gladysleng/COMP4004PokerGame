@@ -535,4 +535,96 @@ public class EqualRankComparatorTest {
         assertEquals(winner, comparator.compareStraight(c1, c2));
 
     }
+
+    @org.junit.Test
+    public void compareTwoPairs_AIPdiffrentRank() {
+        List<Card> c1 = CardTestHelper.createHand(new int[][]{
+                {3, 2},
+                {2, 2},
+                {1, 14},
+                {4, 14},
+                {4, 6}
+        });
+
+        List<Card> c2 = CardTestHelper.createHand(new int[][]{
+                {4, 10},
+                {3, 10},
+                {1, 12},
+                {2, 13},
+                {1, 14}
+        });
+
+        List<Card> winner = c1;
+        assertEquals(winner, comparator.compareTwoPairs(c1, c2));
+
+    }
+
+    @org.junit.Test
+    public void compareTwoPairs_OpponentdiffrentRank() {
+        List<Card> c2 = CardTestHelper.createHand(new int[][]{
+                {3, 2},
+                {2, 2},
+                {1, 14},
+                {4, 14},
+                {4, 6}
+        });
+
+        List<Card> c1 = CardTestHelper.createHand(new int[][]{
+                {4, 10},
+                {3, 10},
+                {1, 12},
+                {2, 13},
+                {1, 14}
+        });
+
+        List<Card> winner = c2;
+        assertEquals(winner, comparator.compareTwoPairs(c1, c2));
+
+    }
+
+    @org.junit.Test
+    public void compareTwoPairs_AIPWithSuit() {
+        List<Card> c1 = CardTestHelper.createHand(new int[][]{
+                {3, 2},
+                {2, 2},
+                {3, 14},
+                {4, 14},
+                {4, 6}
+        });
+
+        List<Card> c2 = CardTestHelper.createHand(new int[][]{
+                {4, 10},
+                {3, 10},
+                {1, 12},
+                {2, 14},
+                {1, 14}
+        });
+
+        List<Card> winner = c1;
+        assertEquals(winner, comparator.compareTwoPairs(c1, c2));
+
+    }
+
+    @org.junit.Test
+    public void compareTwoPairs_OpponentWithSuit() {
+        List<Card> c2 = CardTestHelper.createHand(new int[][]{
+                {3, 2},
+                {2, 2},
+                {3, 14},
+                {4, 14},
+                {4, 6}
+        });
+
+        List<Card> c1 = CardTestHelper.createHand(new int[][]{
+                {4, 10},
+                {3, 10},
+                {1, 12},
+                {2, 14},
+                {1, 14}
+        });
+
+        List<Card> winner = c2;
+        assertEquals(winner, comparator.compareTwoPairs(c1, c2));
+
+    }
 }
