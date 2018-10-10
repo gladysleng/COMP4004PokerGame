@@ -155,4 +155,16 @@ public class Strategy {
         return discardedCard;
 
     }
+    public List<Card> changeThreeCardsForHighCards(List<Card> c, List<Card> cardsToChange) {
+        List<Card> discardedCard = new ArrayList<Card>();
+        handChecker.sortHand(c);
+        discardedCard.add(c.remove(0));
+        discardedCard.add(c.remove(0));
+        discardedCard.add(c.remove(0));
+        c.addAll(cardsToChange);
+
+        handChecker.sortHand(c);
+        return discardedCard;
+    }
+
 }
