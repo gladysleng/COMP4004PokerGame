@@ -399,4 +399,36 @@ public class HandChecker {
         return false;
 
     }
+
+    public boolean oneCardFromStraightFlush(List<Card> c) {
+        if (validSize(c) && oneCardFromFlush(c)) {
+            sortSuit(c);
+
+            List<Card> clone = new ArrayList<Card>(c);
+
+            if (c.get(0).getSuit() != c.get(2).getSuit()) {
+                clone.remove(0);
+            } else {
+                clone.remove(clone.size() - 1);
+            }
+
+            sortHand(clone);
+
+            //ace case
+            if ((clone.get(clone.size() - 1).getRank() == 14)) {
+                for (int i = 0; i < clone.size() - 1; i++) {
+                    if ((!(clone.get(i).getRank() >= 2 && clone.get(i).getRank() <= 5)) || (clone.get(i).getRank() == clone.get(i + 1).getRank())) {
+                        return false;
+                    }
+                }
+                clone.get(clone.size() - 1).setRank(1);
+                sortHand(clone);
+            }
+
+            if (rangeOfFourOrThree(clone.get(clone.size() - 1).getRank(), clone.get(0).getRank())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
