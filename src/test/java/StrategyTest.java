@@ -98,5 +98,67 @@ public class StrategyTest {
         assertDiscardedCards(expectedDiscardedCards, discardedCards);
     }
 
+    @org.junit.Test
+    public void changeOneCardForStraightFlush_HHHHSTest() {
+        List<Card> cardsToExchange = createHand(new int[][]{
+                {4, 7}
+        });
+
+        List<Card> c = createHand(new int[][]{
+                {4, 14},
+                {3, 3},
+                {3, 2},
+                {3, 4},
+                {3, 6}
+        });
+
+        List<Card> expectedDiscardedCards = createExpectedHand(new Card[]{
+                c.get(0)
+        });
+
+        List<Card> expectedOutput = createExpectedHand(new Card[]{
+                c.get(2),
+                c.get(1),
+                c.get(3),
+                c.get(4),
+                cardsToExchange.get(0),
+        });
+
+        List<Card> discardedCards = strategy.changeOneCardForRoyalFlush(c, cardsToExchange);
+        assertEquals(expectedOutput, c);
+        assertDiscardedCards(expectedDiscardedCards, discardedCards);
+    }
+
+    @org.junit.Test
+    public void changeOneCardForStraightFlush_CHHHHTest() {
+        List<Card> cardsToExchange = createHand(new int[][]{
+                {4, 7}
+        });
+
+        List<Card> c = createHand(new int[][]{
+                {2, 14},
+                {3, 3},
+                {3, 2},
+                {3, 4},
+                {3, 6}
+        });
+
+        List<Card> expectedDiscardedCards = createExpectedHand(new Card[]{
+                c.get(0)
+        });
+
+        List<Card> expectedOutput = createExpectedHand(new Card[]{
+                c.get(2),
+                c.get(1),
+                c.get(3),
+                c.get(4),
+                cardsToExchange.get(0),
+        });
+
+        List<Card> discardedCards = strategy.changeOneCardForRoyalFlush(c, cardsToExchange);
+        assertEquals(expectedOutput, c);
+        assertDiscardedCards(expectedDiscardedCards, discardedCards);
+    }
+
 
 }
