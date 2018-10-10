@@ -150,4 +150,9 @@ public class EqualRankComparator {
     public List<Card> compareTwoPairs(List<Card>c1 ,List<Card> c2){
         return compareHighestPair(c1,c2);
     }
+
+    public List<Card> compareOnePair(List<Card>c1 ,List<Card> c2){
+        return compareHighestPair(c1,c2);
+
+    }
 }
