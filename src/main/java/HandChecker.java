@@ -79,4 +79,21 @@ public class HandChecker {
         return false;
     }
 
+    //check straight flush
+    public boolean isStraightFlush(List<Card> c) {
+        if (validSize(c)) {
+            sortHand(c);
+
+                    //check if they have the same suit
+                    for (int i = 0; i < c.size() - 1; i++) {
+                        if ((c.get(i + 1).getSuit()) != ((c.get(i).getSuit()))) {
+                            return false;
+                        }
+                    }
+                    return true;
+
+        }
+        return false;
+    }
+
 }
