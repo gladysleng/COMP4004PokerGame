@@ -48,4 +48,18 @@ public class Strategy {
         return discardedCard;
 
     }
+
+    public List<Card> changeOneCardForFlush(List<Card> c, List<Card> cardsToChange) {
+        List<Card> discardedCard = new ArrayList<Card>();
+        handChecker.sortSuit(c);
+
+        if (c.get(0).getSuit() != c.get(2).getSuit()) {
+            discardedCard.add(c.remove(0));
+        } else {
+            discardedCard.add(c.remove(c.size() - 1));
+        }
+        c.addAll(cardsToChange);
+        handChecker.sortHand(c);
+        return discardedCard;
+    }
 }
