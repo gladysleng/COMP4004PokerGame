@@ -86,6 +86,7 @@ public class HandCheckerTest {
         assertEquals(true, handChecker.isFullHouse(c));
     }
 
+
     @org.junit.Test
     public void isFlushTest() {
         List<Card> c = CardTestHelper.createHand(new int[][]{
@@ -108,6 +109,5 @@ public class HandCheckerTest {
                 {4, 11}
         });
         assertEquals(false, handChecker.isFlush(c));
-    }
 
 }
