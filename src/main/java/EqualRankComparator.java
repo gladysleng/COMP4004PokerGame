@@ -14,4 +14,25 @@ public class EqualRankComparator {
             return c2;
         }
     }
+    public List<Card> compareStraightFlush(List<Card>c1, List<Card>c2){
+        handChecker.sortHand(c1);
+        handChecker.sortHand(c2);
+
+        if(c1.get(c1.size()-1).getRank() == c2.get(c2.size()-1).getRank()){
+            if(c1.get(c1.size()-1).getSuit() > c2.get(c2.size() - 1).getSuit()){
+                return c1;
+            }
+            else{
+                return c2;
+            }
+        }
+        else{
+            if(c1.get(c1.size()-1).getRank() > c2.get(c2.size()-1).getRank()){
+                return c1;
+            }
+            else{
+                return c2;
+            }
+        }
+    }
 }
