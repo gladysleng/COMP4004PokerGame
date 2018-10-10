@@ -96,4 +96,26 @@ public class HandChecker {
         return false;
     }
 
+
+    //check four of a kind
+    public boolean isFourOfAKind(List<Card> c) {
+
+        if (validSize(c)) {
+            sortHand(c);
+
+            boolean t1, t2;
+
+            //DAAAA
+            t1 = (c.get(0).getRank() != c.get(1).getRank())
+                    && (c.get(1).getRank() == c.get(c.size() - 1).getRank());
+
+            //AAAAD
+            t2 = (c.get(0).getRank() != c.get(c.size() - 1).getRank())
+                    && (c.get(0).getRank() == c.get(3).getRank());
+            return (t2 || t1);
+
+        }
+        return false;
+    }
+
 }
