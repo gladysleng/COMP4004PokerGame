@@ -31,4 +31,21 @@ public class Strategy {
         handChecker.sortHand(c);
         return discardedCard;
     }
+
+
+    public List<Card> changeOneCardForStraightFlush(List<Card> c, List<Card> cardToExchange) {
+        handChecker.sortSuit(c);
+        List<Card> discardedCard = new ArrayList<Card>();
+        if (c.get(0).getSuit() != c.get(2).getSuit()) {
+            discardedCard.add(c.remove(0));
+        } else {
+            discardedCard.add(c.remove(c.size() - 1));
+        }
+        if (c.size() != 5) {
+            c.addAll(cardToExchange);
+        }
+        handChecker.sortHand(c);
+        return discardedCard;
+
+    }
 }
