@@ -291,4 +291,66 @@ public class StrategyTest {
         assertDiscardedCards(expectedDiscardedCards, discardedCards);
     }
 
+    @org.junit.Test
+    public void changeOneCardForFlush_DCCCCTest() {
+        List<Card> cardsToExchange = createHand(new int[][]{
+                {2, 9}
+        });
+
+        List<Card> c = createHand(new int[][]{
+                {3, 5},
+                {3, 4},
+                {3, 2},
+                {1, 4},
+                {3, 3}
+        });
+
+        List<Card> expectedDiscardedCards = createExpectedHand(new Card[]{
+                c.get(3)
+        });
+
+        List<Card> expectedOutput = createExpectedHand(new Card[]{
+                c.get(0),
+                c.get(1),
+                c.get(2),
+                c.get(4),
+                cardsToExchange.get(0),
+        });
+
+        List<Card> discardedCards = strategy.changeOneCardForFlush(c, cardsToExchange);
+        assertEquals(expectedOutput, c);
+        assertDiscardedCards(expectedDiscardedCards, discardedCards);
+    }
+
+    @org.junit.Test
+    public void changeOneCardForFlush_CCCCSTest() {
+        List<Card> cardsToExchange = createHand(new int[][]{
+                {2, 9}
+        });
+
+        List<Card> c = createHand(new int[][]{
+                {3, 5},
+                {3, 4},
+                {3, 2},
+                {4, 4},
+                {3, 3}
+        });
+
+        List<Card> expectedDiscardedCards = createExpectedHand(new Card[]{
+                c.get(3)
+        });
+
+        List<Card> expectedOutput = createExpectedHand(new Card[]{
+                c.get(0),
+                c.get(1),
+                c.get(2),
+                c.get(4),
+                cardsToExchange.get(0),
+        });
+
+        List<Card> discardedCards = strategy.changeOneCardForFlush(c, cardsToExchange);
+        assertEquals(expectedOutput, c);
+        assertDiscardedCards(expectedDiscardedCards, discardedCards);
+    }
+
 }
