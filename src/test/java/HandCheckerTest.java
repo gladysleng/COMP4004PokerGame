@@ -813,5 +813,65 @@ public class HandCheckerTest {
 
     }
 
+    @org.junit.Test
+    public void oneCardFromStraight_OnePairWithAceTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {3, 2},
+                {3, 3},
+                {3, 14},
+                {2, 4},
+                {4, 4}
+        });
+        assertEquals(true, handChecker.oneCardFromStraight(c));
+    }
+
+    @org.junit.Test
+    public void oneCardFromStraight_withAceTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {3, 2},
+                {3, 3},
+                {3, 14},
+                {2, 7},
+                {4, 5}
+        });
+        assertEquals(true, handChecker.oneCardFromStraight(c));
+    }
+
+    @org.junit.Test
+    public void oneCardFromStraight_OnePair_RangeOfFourTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {3, 6},
+                {3, 3},
+                {3, 5},
+                {2, 5},
+                {4, 7}
+        });
+        assertEquals(true, handChecker.oneCardFromStraight(c));
+    }
+
+    @org.junit.Test
+    public void oneCardFromStraight_OnePair_RangeOfThreeTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {3, 2},
+                {3, 3},
+                {3, 4},
+                {2, 2},
+                {4, 5}
+        });
+        assertEquals(true, handChecker.oneCardFromStraight(c));
+    }
+
+    @org.junit.Test
+    public void oneCardFromStraight_TwoPairsTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {3, 2},
+                {3, 3},
+                {3, 10},
+                {2, 3},
+                {4, 2}
+        });
+        assertEquals(false, handChecker.oneCardFromStraight(c));
+    }
+
 
 }
