@@ -644,4 +644,41 @@ public class StrategyTest {
         assertEquals(expectedOutput, c);
         assertDiscardedCards(expectedDiscardedCards, discardedCards);
     }
+
+
+    @org.junit.Test
+    public void changeThreeCardsForHighestCardTest(){
+        List<Card> cardsToExchange = createHand(new int[][]{
+                {2, 7},
+                {2, 12},
+                {4, 5}
+        });
+
+        List<Card> c = createHand(new int[][]{
+                {3, 6},
+                {2, 10},
+                {3, 3},
+                {4, 2},
+                {1, 14}
+        });
+
+        List<Card> expectedDiscardedCards = createExpectedHand(new Card[]{
+                c.get(0),
+                c.get(2),
+                c.get(3)
+        });
+
+        List<Card> expectedOutput = createExpectedHand(new Card[]{
+                c.get(4),
+                c.get(1),
+                cardsToExchange.get(2),
+                cardsToExchange.get(0),
+                cardsToExchange.get(1)
+        });
+
+        List<Card> discardedCards = strategy.changeThreeCardsForHighCards(c, cardsToExchange);
+        assertEquals(expectedOutput, c);
+        assertDiscardedCards(expectedDiscardedCards, discardedCards);
+    }
+
 }
