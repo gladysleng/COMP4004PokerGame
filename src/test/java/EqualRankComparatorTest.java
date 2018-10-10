@@ -237,4 +237,48 @@ public class EqualRankComparatorTest {
         List<Card> winner = c1;
         assertEquals(winner, comparator.compareFullHouse(c1, c2));
     }
+
+    @org.junit.Test
+    public void compareThreeOfAKind_OpponentWins() {
+        List<Card> c1 = CardTestHelper.createHand(new int[][]{
+                {3, 7},
+                {2, 7},
+                {1, 7},
+                {4, 10},
+                {3, 11}
+        });
+
+        List<Card> c2 = CardTestHelper.createHand(new int[][]{
+                {3, 12},
+                {2, 12},
+                {1, 12},
+                {3, 10},
+                {1, 2}
+        });
+
+        List<Card> winner = c2;
+        assertEquals(winner, comparator.compareThreeOfAKind(c1, c2));
+    }
+
+    @org.junit.Test
+    public void compareThreeOfAKind_AIPWins() {
+        List<Card> c2 = CardTestHelper.createHand(new int[][]{
+                {3, 7},
+                {2, 7},
+                {1, 7},
+                {4, 10},
+                {3, 11}
+        });
+
+        List<Card> c1 = CardTestHelper.createHand(new int[][]{
+                {3, 12},
+                {2, 12},
+                {1, 12},
+                {3, 10},
+                {1, 2}
+        });
+
+        List<Card> winner = c1;
+        assertEquals(winner, comparator.compareThreeOfAKind(c1, c2));
+    }
 }
