@@ -54,4 +54,99 @@ public class EqualRankComparatorTest {
         List<Card> winner = c2;
         assertEquals(winner, comparator.compareRoyalFlush(c1, c2));
     }
+
+    @org.junit.Test
+    public void compareStraightFlush_AIPWinsCompareRank() {
+
+        List<Card> c1 = CardTestHelper.createHand(new int[][]{
+                {3, 6},
+                {3, 7},
+                {3, 8},
+                {3, 9},
+                {3, 10}
+        });
+
+        List<Card> c2 = CardTestHelper.createHand(new int[][]{
+                {1, 5},
+                {1, 6},
+                {1, 7},
+                {1, 8},
+                {1, 9}
+        });
+
+        List<Card> winner = c1;
+        assertEquals(winner, comparator.compareStraightFlush(c1, c2));
+
+    }
+
+    @org.junit.Test
+    public void compareStraightFlush_OpponentWinsCompareRank() {
+
+        List<Card> c2 = CardTestHelper.createHand(new int[][]{
+                {3, 6},
+                {3, 7},
+                {3, 8},
+                {3, 9},
+                {3, 10}
+        });
+
+        List<Card> c1 = CardTestHelper.createHand(new int[][]{
+                {1, 5},
+                {1, 6},
+                {1, 7},
+                {1, 8},
+                {1, 9}
+        });
+
+        List<Card> winner = c2;
+        assertEquals(winner, comparator.compareStraightFlush(c1, c2));
+    }
+
+
+    @org.junit.Test
+    public void compareStraightFlush_AIPWinsCompareSuit() {
+
+        List<Card> c1 = CardTestHelper.createHand(new int[][]{
+                {3, 6},
+                {3, 7},
+                {3, 8},
+                {3, 9},
+                {3, 10}
+        });
+
+        List<Card> c2 = CardTestHelper.createHand(new int[][]{
+                {2, 6},
+                {2, 7},
+                {2, 8},
+                {2, 9},
+                {2, 10}
+        });
+
+        List<Card> winner = c1;
+        assertEquals(winner, comparator.compareStraightFlush(c1, c2));
+
+    }
+
+    @org.junit.Test
+    public void compareStraightFlush_OpponentWinsCompareSuit() {
+
+        List<Card> c2 = CardTestHelper.createHand(new int[][]{
+                {3, 6},
+                {3, 7},
+                {3, 8},
+                {3, 9},
+                {3, 10}
+        });
+
+        List<Card> c1 = CardTestHelper.createHand(new int[][]{
+                {2, 6},
+                {2, 7},
+                {2, 8},
+                {2, 9},
+                {2, 10}
+        });
+
+        List<Card> winner = c2;
+        assertEquals(winner, comparator.compareStraightFlush(c1, c2));
+    }
 }
