@@ -6,6 +6,9 @@ public class HandChecker {
     private int FOUR_OF_A_KIND = 4;
     private int THREE_OF_A_KIND = 3;
 
+    public boolean validSize(List<Card> c) {
 
+        return c.size() == 5;
+    }
 
 }
