@@ -62,4 +62,32 @@ public class Strategy {
         handChecker.sortHand(c);
         return discardedCard;
     }
+
+    public List<Card> changeOneCardForStraight(List<Card> c, List<Card> cardsToChange) {
+        handChecker.sortHand(c);
+        List<Card> discardedCard = new ArrayList<Card>();
+        if (c.get(c.size() - 1).getRank() == 14) {
+            handChecker.changeRankChangeForAce(c);
+        }
+
+        if (handChecker.isOnePair(c)) {
+            for (int i = 0; i < c.size() - 1; i++) {
+                if (c.get(i).getRank() == c.get(i + 1).getRank()) {
+                    discardedCard.add(c.remove(i));
+                    break;
+                }
+            }
+        } else {
+
+            if (handChecker.rangeOfFourOrThree((c.get(c.size() - 1).getRank()), (c.get(1).getRank()))) {
+                discardedCard.add(c.remove(0));
+
+            } else {
+                discardedCard.add(c.remove(c.size() - 1));
+            }
+        }
+        c.addAll(cardsToChange);
+        handChecker.sortHand(c);
+        return discardedCard;
+    }
 }
