@@ -234,4 +234,23 @@ public class HandChecker {
         return false;
     }
 
+    //royal flush
+    public boolean isRoyalFlush(List<Card> c) {
+        if (validSize(c)) {
+            sortHand(c);
+
+            boolean t;
+
+            t = (c.get(0).getRank() == 10)
+                    && (c.get(1).getRank() == 11)
+                    && (c.get(2).getRank() == 12)
+                    && (c.get(3).getRank() == 13)
+                    && (c.get(4).getRank() == 14);
+
+            return (t && isFlush(c));
+
+        }
+        return false;
+    }
+
 }
