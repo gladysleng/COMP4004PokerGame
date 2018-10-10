@@ -763,5 +763,29 @@ public class HandCheckerTest {
         assertEquals(false, handChecker.oneCardFromRoyalFlush(c));
     }
 
+    @org.junit.Test
+    public void oneCardFromFlush_CHHHHTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 10},
+                {1, 11},
+                {1, 9},
+                {1, 12},
+                {1, 14}
+        });
+        assertEquals(true, handChecker.oneCardFromFlush(c));
+    }
+
+    @org.junit.Test
+    public void oneCardFromFlush_HHHHSTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {3, 10},
+                {3, 11},
+                {3, 9},
+                {3, 12},
+                {4, 14}
+        });
+        assertEquals(true, handChecker.oneCardFromFlush(c));
+    }
+
 
 }
