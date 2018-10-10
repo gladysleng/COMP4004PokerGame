@@ -104,4 +104,50 @@ public class EqualRankComparator {
     public List<Card> compareStraight(List<Card>c1 ,List<Card> c2){
         return compareHighestRankOfTwoHands(c1,c2);
     }
+
+    private Card returnHighestCardOfPairs(List<Card>c){
+        HashMap<Integer, List<Card>> rankBucket = new HashMap<Integer, List<Card>>();
+        List<Card> cards;
+        for (Card currentCard : c) {
+            cards = rankBucket.get(currentCard.getRank());
+            if (cards == null) {
+                cards = new ArrayList<Card>();
+                rankBucket.put(currentCard.getRank(), cards);
+            }
+            cards.add(currentCard);
+        }
+
+        Map.Entry<Integer, List<Card>> highestRankMap = null;
+        for (Map.Entry<Integer, List<Card>> entry : rankBucket.entrySet()) {
+            if (entry.getValue().size() == 2 && (highestRankMap == null || entry.getKey() > highestRankMap.getKey())) {
+                highestRankMap = entry;
+            }
+        }
+
+        List<Card> highestPair = highestRankMap.getValue();
+        handChecker.sortSuit(highestPair);
+        return highestPair.get(highestPair.size()-1);
+    }
+
+    private List<Card> compareHighestPair(List<Card>c1 ,List<Card> c2){
+        Card highestFromC1 = returnHighestCardOfPairs(c1);
+        Card highestFromC2 = returnHighestCardOfPairs(c2);
+
+        if(highestFromC1.getRank() > highestFromC2.getRank()){
+            return c1;
+        }
+        else if (highestFromC2.getRank() > highestFromC1.getRank()){
+            return c2;
+        }
+        else if (highestFromC1.getSuit() > highestFromC2.getSuit()){
+            return c1;
+        }
+        else{
+            return c2;
+        }
+
+    }
+    public List<Card> compareTwoPairs(List<Card>c1 ,List<Card> c2){
+        return compareHighestPair(c1,c2);
+    }
 }
