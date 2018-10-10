@@ -167,4 +167,25 @@ public class Strategy {
         return discardedCard;
     }
 
+    public List<Card> changeTwoCardsForThreeInSequence(List<Card> c, List<Card> cardsToChange) {
+        List<Card> discardedCard = new ArrayList<Card>();
+        handChecker.sortHand(c);
+
+        if (c.get(0).getRank() == c.get(1).getRank() - 1 && c.get(0).getRank() == c.get(2).getRank() - 2) {
+            discardedCard.add(c.remove(c.size() - 1));
+            discardedCard.add(c.remove(c.size() - 1));
+        } else if (c.get(1).getRank() == c.get(2).getRank() - 1 && c.get(1).getRank() == c.get(3).getRank() - 2) {
+            discardedCard.add(c.remove(0));
+            discardedCard.add(c.remove(c.size() - 1));
+        } else if (c.get(2).getRank() == c.get(3).getRank() - 1 && c.get(2).getRank() == c.get(4).getRank() - 2) {
+            discardedCard.add(c.remove(0));
+            discardedCard.add(c.remove(0));
+        }
+
+        c.addAll(cardsToChange);
+
+        handChecker.sortHand(c);
+        return discardedCard;
+    }
+
 }
