@@ -171,5 +171,34 @@ public class HandChecker {
         return false;
     }
 
+    //check two pair
+    public boolean isTwoPair(List<Card> c) {
+        if (validSize(c)) {
+            sortHand(c);
+
+            if (isFullHouse(c) || isFourOfAKind(c) || isThreeOfAKind(c)) {
+                return false;
+            }
+
+            boolean a1, a2, a3;
+
+            //44566
+            a1 = c.get(0).getRank() == c.get(1).getRank() &&
+                    c.get(3).getRank() == c.get(4).getRank();
+
+            //44556
+            a2 = c.get(0).getRank() == c.get(1).getRank() &&
+                    c.get(2).getRank() == c.get(3).getRank();
+
+            //34455
+            a3 = c.get(1).getRank() == c.get(2).getRank() &&
+                    c.get(3).getRank() == c.get(4).getRank();
+
+            return (a1 || a2 || a3);
+        }
+
+        return false;
+    }
+
 
 }
