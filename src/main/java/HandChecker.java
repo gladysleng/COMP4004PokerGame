@@ -83,7 +83,8 @@ public class HandChecker {
     public boolean isStraightFlush(List<Card> c) {
         if (validSize(c)) {
             sortHand(c);
-
+            if (!isRoyalFlush(c)) {
+                if (isStraight(c)) {
                     //check if they have the same suit
                     for (int i = 0; i < c.size() - 1; i++) {
                         if ((c.get(i + 1).getSuit()) != ((c.get(i).getSuit()))) {
@@ -91,11 +92,11 @@ public class HandChecker {
                         }
                     }
                     return true;
-
+                }
+            }
         }
         return false;
     }
-
 
     //check four of a kind
     public boolean isFourOfAKind(List<Card> c) {
