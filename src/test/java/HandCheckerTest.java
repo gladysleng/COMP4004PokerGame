@@ -365,4 +365,52 @@ public class HandCheckerTest {
         assertEquals(true, handChecker.isTwoPair(c));
     }
 
+    @org.junit.Test
+    public void isOnePair_NotTwoPairTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 9},
+                {1, 9},
+                {3, 6},
+                {4, 4},
+                {2, 6}
+        });
+        assertEquals(false, handChecker.isOnePair(c));
+    }
+
+    @org.junit.Test
+    public void isOnePair_NotThreeOfAKindTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 9},
+                {1, 9},
+                {3, 9},
+                {4, 4},
+                {2, 6}
+        });
+        assertEquals(false, handChecker.isOnePair(c));
+    }
+
+    @org.junit.Test
+    public void isOnePair_NotFourOfAKindTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 9},
+                {1, 9},
+                {3, 9},
+                {4, 9},
+                {2, 6}
+        });
+        assertEquals(false, handChecker.isOnePair(c));
+    }
+
+    @org.junit.Test
+    public void isOnePairTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 9},
+                {3, 14},
+                {1, 9},
+                {4, 5},
+                {2, 6}
+        });
+        assertEquals(true, handChecker.isOnePair(c));
+    }
+
 }
