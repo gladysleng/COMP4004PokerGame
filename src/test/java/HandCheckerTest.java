@@ -678,4 +678,90 @@ public class HandCheckerTest {
         assertEquals(1, handChecker.getPokerRank(c));
     }
 
+    @org.junit.Test
+    public void oneCardFromRoyalFlush_onePairTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 10},
+                {1, 11},
+                {1, 10},
+                {1, 12},
+                {1, 14}
+        });
+        assertEquals(true, handChecker.oneCardFromRoyalFlush(c));
+
+    }
+
+    @org.junit.Test
+    public void oneCardFromRoyalFlush_onePairbutNotFlushTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {1, 9},
+                {1, 11},
+                {2, 11},
+                {1, 12},
+                {1, 14}
+        });
+        assertEquals(false, handChecker.oneCardFromRoyalFlush(c));
+    }
+
+    @org.junit.Test
+    public void oneCardFromRoyalFlush_onePairbutNotFlush_9To14Test() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {1, 9},
+                {1, 11},
+                {2, 11},
+                {1, 12},
+                {1, 14}
+        });
+        assertEquals(false, handChecker.oneCardFromRoyalFlush(c));
+    }
+
+    @org.junit.Test
+    public void oneCardFromRoyalFlush_onePair2OddSuits_10To14Test() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {1, 10},
+                {1, 11},
+                {2, 12},
+                {1, 12},
+                {2, 14}
+        });
+        assertEquals(false, handChecker.oneCardFromRoyalFlush(c));
+    }
+
+    @org.junit.Test
+    public void oneCardFromRoyalFlush_firstIndexIsNotRangeOf11to14Test() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 9},
+                {1, 11},
+                {1, 12},
+                {1, 13},
+                {1, 14}
+        });
+        assertEquals(true, handChecker.oneCardFromRoyalFlush(c));
+    }
+
+    @org.junit.Test
+    public void oneCardFromRoyalFlush_firstIndexWrongRank_FourthWrongSuitTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {1, 7},
+                {1, 10},
+                {1, 11},
+                {2, 12},
+                {1, 14}
+        });
+        assertEquals(false, handChecker.oneCardFromRoyalFlush(c));
+    }
+
+    @org.junit.Test
+    public void oneCardFromRoyalFlush_TwoWrongRankOneWrongSuitTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 7},
+                {1, 9},
+                {1, 11},
+                {2, 12},
+                {1, 14}
+        });
+        assertEquals(false, handChecker.oneCardFromRoyalFlush(c));
+    }
+
+
 }
