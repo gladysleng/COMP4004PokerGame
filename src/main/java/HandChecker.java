@@ -200,5 +200,25 @@ public class HandChecker {
         return false;
     }
 
+    //check one Pair
+    public boolean isOnePair(List<Card> c) {
+        if (validSize(c)) {
+            sortHand(c);
+
+            int counter = 1;
+
+            for (int i = 0; i < c.size() - 1; i++) {
+                if (c.get(i + 1).getRank() == c.get(i).getRank()) {
+                    counter++;
+                }
+            }
+            if (counter == TWO_OF_A_KIND) {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
 
 }
