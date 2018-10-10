@@ -86,4 +86,28 @@ public class HandCheckerTest {
         assertEquals(true, handChecker.isFullHouse(c));
     }
 
+    @org.junit.Test
+    public void isFlushTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {4, 10},
+                {4, 7},
+                {4, 8},
+                {4, 12},
+                {4, 11}
+        });
+        assertEquals(true, handChecker.isFlush(c));
+    }
+
+    @org.junit.Test
+    public void isFlushTest_invalid() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {4, 10},
+                {4, 7},
+                {4, 8},
+                {3, 12},
+                {4, 11}
+        });
+        assertEquals(false, handChecker.isFlush(c));
+    }
+
 }
