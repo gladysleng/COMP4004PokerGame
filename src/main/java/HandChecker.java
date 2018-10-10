@@ -220,5 +220,18 @@ public class HandChecker {
         return false;
     }
 
+    //check high card
+    public boolean isHighCard(List<Card> c) {
+        if (validSize(c)) {
+            sortHand(c);
+
+            if (!isTwoPair(c) && !isThreeOfAKind(c) && !isFourOfAKind(c)
+                    && !isFullHouse(c) && !isStraight(c) && !isStraightFlush(c)
+                    && !isFlush(c) && !isOnePair(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
