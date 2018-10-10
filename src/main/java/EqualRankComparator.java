@@ -61,4 +61,26 @@ public class EqualRankComparator {
         return compareCenterCard(c1, c2);
 
     }
+    public List<Card> compareFlush(List<Card> c1, List<Card> c2) {
+        handChecker.sortHand(c1);
+        handChecker.sortHand(c2);
+
+        for (int i = c1.size() - 1; i >= 0; i--) {
+
+            //if c1 has higher rank in one of its card
+            if (c1.get(i).getRank() > c2.get(i).getRank()) {
+                return c1;
+            } else if (c2.get(i).getRank() > c1.get(i).getRank()) {
+                return c2;
+            }
+        }
+
+        //both rank equal
+        if (c1.get(0).getSuit() > c2.get(0).getSuit()) {
+            return c1;
+        } else {
+            return c2;
+        }
+
+    }
 }
