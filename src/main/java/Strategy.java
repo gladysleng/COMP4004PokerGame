@@ -90,4 +90,29 @@ public class Strategy {
         handChecker.sortHand(c);
         return discardedCard;
     }
+
+    public List<Card> changeTwoCardsForThreeSameSuit(List<Card> c, List<Card> cardsToChange) {
+        handChecker.sortSuit(c);
+        List<Card> discardedCard = new ArrayList<Card>();
+
+        //DDDHH
+        if ((c.get(0).getSuit() == c.get(2).getSuit())) {
+            discardedCard.add(c.remove(3));
+            discardedCard.add(c.remove(4));
+        }
+        //DCCCS
+        else if ((c.get(1).getSuit() == c.get(3).getSuit())) {
+            discardedCard.add(c.remove(0));
+            discardedCard.add(c.remove(3));
+        }
+        //DCSSS
+        else if ((c.get(2).getSuit() == c.get(4).getSuit())) {
+            discardedCard.add(c.remove(0));
+            discardedCard.add(c.remove(0));
+        }
+        c.addAll(cardsToChange);
+
+        handChecker.sortHand(c);
+        return discardedCard;
+    }
 }
