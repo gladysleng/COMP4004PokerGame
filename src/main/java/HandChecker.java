@@ -1,5 +1,5 @@
 import java.util.List;
-
+import java.util.ArrayList;
 public class HandChecker {
 
     private int TWO_OF_A_KIND = 2;
@@ -10,5 +10,7 @@ public class HandChecker {
 
         return c.size() == 5;
     }
+
+
 
 }

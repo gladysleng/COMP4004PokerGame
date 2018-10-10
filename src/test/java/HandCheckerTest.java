@@ -1,5 +1,5 @@
 import static org.junit.Assert.*;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class HandCheckerTest {
@@ -20,5 +20,45 @@ public class HandCheckerTest {
                 {1, 5}
         });
         assertEquals(5, c.size());
+    }
+    @org.junit.Test
+    public void sortHandTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {1, 10},
+                {1, 2},
+                {2, 12},
+                {1, 12},
+                {3, 3}
+        });
+
+        ArrayList<Card> expectedOutput = new ArrayList<Card>();
+        expectedOutput.add(c.get(1));
+        expectedOutput.add(c.get(4));
+        expectedOutput.add(c.get(0));
+        expectedOutput.add(c.get(3));
+        expectedOutput.add(c.get(2));
+
+        handChecker.sortHand(c);
+        assertEquals(expectedOutput, c);
+    }
+
+    @org.junit.Test
+    public void sortSuitTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {4, 10},
+                {3, 2},
+                {2, 12},
+                {1, 12}
+        });
+
+        ArrayList<Card> expectedOutput = new ArrayList<Card>();
+        expectedOutput.add(c.get(3));
+        expectedOutput.add(c.get(2));
+        expectedOutput.add(c.get(1));
+        expectedOutput.add(c.get(0));
+
+        handChecker.sortSuit(c);
+        assertEquals(expectedOutput, c);
+
     }
 }
