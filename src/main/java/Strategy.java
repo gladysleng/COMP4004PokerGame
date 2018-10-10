@@ -115,4 +115,6 @@ public class Strategy {
         handChecker.sortHand(c);
         return discardedCard;
     }
+
+
 }
