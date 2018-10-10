@@ -812,6 +812,6 @@ public class HandCheckerTest {
         assertEquals(true, handChecker.oneCardFromFullHouse(c));
 
     }
-    
+
 
 }

@@ -347,4 +347,17 @@ public class HandChecker {
         }
 
         return false;
+    }
+    public boolean oneCardFromFullHouse(List<Card> c) {
+        if (validSize(c)) {
+            sortHand(c);
+
+            if (isTwoPair(c) || isThreeOfAKind(c)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
