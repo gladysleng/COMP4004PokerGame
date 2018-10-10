@@ -509,5 +509,54 @@ public class HandCheckerTest {
         assertEquals(true, handChecker.isHighCard(c));
     }
 
+    @org.junit.Test
+    public void isRoyalFlush_noFlushTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {2, 11},
+                {3, 10},
+                {2, 12},
+                {2, 13}
+        });
+        assertEquals(false, handChecker.isRoyalFlush(c));
+    }
+
+    @org.junit.Test
+    public void isRoyalFlush_notTenToAce_notStraightTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {2, 7},
+                {2, 10},
+                {2, 12},
+                {2, 13}
+        });
+        assertEquals(false, handChecker.isRoyalFlush(c));
+    }
+
+
+    @org.junit.Test
+    public void isRoyalFlush_notTenToAce_StraightTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 8},
+                {2, 5},
+                {2, 6},
+                {2, 7},
+                {2, 4}
+        });
+        assertEquals(false, handChecker.isRoyalFlush(c));
+    }
+
+    @org.junit.Test
+    public void isRoyalFlushTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {2, 11},
+                {2, 10},
+                {2, 12},
+                {2, 13}
+        });
+        assertEquals(true, handChecker.isRoyalFlush(c));
+    }
+
 
 }
