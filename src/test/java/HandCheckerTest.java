@@ -293,4 +293,76 @@ public class HandCheckerTest {
         assertEquals(false, handChecker.isThreeOfAKind(c));
     }
 
+    @org.junit.Test
+    public void isTwoPair_NotFullHouseTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 3},
+                {1, 4},
+                {3, 3},
+                {4, 4},
+                {2, 4}
+        });
+        assertEquals(false, handChecker.isTwoPair(c));
+    }
+
+    @org.junit.Test
+    public void isTwoPair_NotFourOfAKindTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 3},
+                {1, 4},
+                {3, 4},
+                {4, 4},
+                {2, 4}
+        });
+        assertEquals(false, handChecker.isTwoPair(c));
+    }
+
+    @org.junit.Test
+    public void isTwoPair_NotThreeOfAKindTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {1, 7},
+                {3, 1},
+                {4, 7},
+                {2, 7}
+        });
+        assertEquals(false, handChecker.isTwoPair(c));
+    }
+
+    @org.junit.Test
+    public void isTwoPair_44799Test() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 7},
+                {1, 9},
+                {3, 4},
+                {4, 9},
+                {2, 4}
+        });
+        assertEquals(true, handChecker.isTwoPair(c));
+    }
+
+    @org.junit.Test
+    public void isTwoPair_22JJATest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 11},
+                {1, 2},
+                {3, 2},
+                {4, 14},
+                {2, 11}
+        });
+        assertEquals(true, handChecker.isTwoPair(c));
+    }
+
+    @org.junit.Test
+    public void isTwoPair_46699Test() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 9},
+                {3, 6},
+                {4, 4},
+                {1, 9},
+                {2, 6}
+        });
+        assertEquals(true, handChecker.isTwoPair(c));
+    }
+
 }
