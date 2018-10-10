@@ -51,4 +51,8 @@ public class EqualRankComparator {
         return compareCenterCard(c1,c2);
 
     }
+    public List<Card> compareFullHouse(List<Card> c1, List<Card> c2) {
+        return compareCenterCard(c1,c2);
+
+    }
 }
