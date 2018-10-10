@@ -160,5 +160,27 @@ public class HandCheckerTest {
         });
         assertEquals(false, handChecker.isStraightFlush(c));
     }
+    @org.junit.Test
+    public void isFourOfAKind_37777Test() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {1, 14},
+                {2, 2},
+                {4, 14},
+                {3, 14}
+        });
+        assertEquals(true, handChecker.isFourOfAKind(c));
+    }
 
+    @org.junit.Test
+    public void isFourOfAKind_777712Test() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {1, 11},
+                {2, 12},
+                {3, 11},
+                {4, 11},
+                {2, 11}
+        });
+        assertEquals(true, handChecker.isFourOfAKind(c));
+    }
 }
