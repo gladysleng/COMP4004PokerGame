@@ -558,5 +558,124 @@ public class HandCheckerTest {
         assertEquals(true, handChecker.isRoyalFlush(c));
     }
 
+    @org.junit.Test
+    public void getPokerRank_RoyalFlushTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {2, 11},
+                {2, 10},
+                {2, 12},
+                {2, 13}
+        });
+        assertEquals(10, handChecker.getPokerRank(c));
+    }
+
+    @org.junit.Test
+    public void getPokerRank_StraightFlushTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 9},
+                {2, 11},
+                {2, 10},
+                {2, 12},
+                {2, 13}
+        });
+        assertEquals(9, handChecker.getPokerRank(c));
+    }
+
+    @org.junit.Test
+    public void getPokerRank_FourOfAKindTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 9},
+                {3, 11},
+                {4, 11},
+                {1, 11},
+                {2, 11}
+        });
+        assertEquals(8, handChecker.getPokerRank(c));
+    }
+
+    @org.junit.Test
+    public void getPokerRank_FullHouseTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 9},
+                {3, 9},
+                {4, 11},
+                {1, 11},
+                {2, 11}
+        });
+        assertEquals(7, handChecker.getPokerRank(c));
+    }
+
+    @org.junit.Test
+    public void getPokerRank_FlushTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 9},
+                {2, 10},
+                {2, 12},
+                {2, 1},
+                {2, 11}
+        });
+        assertEquals(6, handChecker.getPokerRank(c));
+    }
+
+    @org.junit.Test
+    public void getPokerRank_StraightTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 9},
+                {2, 10},
+                {1, 12},
+                {4, 13},
+                {2, 11}
+        });
+        assertEquals(5, handChecker.getPokerRank(c));
+    }
+
+    @org.junit.Test
+    public void getPokerRank_ThreeOfAKindTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {2, 10},
+                {1, 10},
+                {4, 10},
+                {2, 11}
+        });
+        assertEquals(4, handChecker.getPokerRank(c));
+    }
+
+    @org.junit.Test
+    public void getPokerRank_TwoPairsTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {2, 10},
+                {1, 10},
+                {4, 14},
+                {2, 11}
+        });
+        assertEquals(3, handChecker.getPokerRank(c));
+    }
+
+    @org.junit.Test
+    public void getPokerRank_OnePairsTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {2, 10},
+                {1, 10},
+                {4, 9},
+                {2, 11}
+        });
+        assertEquals(2, handChecker.getPokerRank(c));
+    }
+
+    @org.junit.Test
+    public void getPokerRank_HighCardTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {2, 7},
+                {1, 10},
+                {4, 9},
+                {2, 11}
+        });
+        assertEquals(1, handChecker.getPokerRank(c));
+    }
 
 }
