@@ -431,4 +431,49 @@ public class HandChecker {
         }
         return false;
     }
+
+    public boolean isThreeOfSameSuit(List<Card> c) {
+        if (validSize(c)) {
+            HashMap<Integer, Integer> suitBucket = new HashMap<Integer, Integer>();
+            Integer count;
+            for (Card currentCard : c) {
+                count = suitBucket.get(currentCard.getSuit());
+                if (count == null) {
+                    count = 0;
+                }
+                suitBucket.put(currentCard.getSuit(), ++count);
+            }
+
+            for (Map.Entry<Integer, Integer> entry : suitBucket.entrySet()) {
+                if (entry.getValue() == 3) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public boolean isThreeInSequence(List<Card> c) {
+        int maxSequence = 0;
+        if (validSize(c)) {
+            sortHand(c);
+
+            int[] sequence = new int[c.size()];
+            sequence[0] = 1;
+
+
+            for (int i = 1; i < c.size(); i++) {
+                sequence[i] = 1;
+                if (c.get(i).getRank() - c.get(i - 1).getRank() == 1) {
+                    sequence[i] = sequence[i - 1] + 1;
+                }
+                if (sequence[i] > maxSequence) {
+                    maxSequence = sequence[i];
+                }
+            }
+        }
+        return maxSequence == 3;
+    }
+
 }
