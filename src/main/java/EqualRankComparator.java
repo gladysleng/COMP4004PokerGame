@@ -35,4 +35,20 @@ public class EqualRankComparator {
             }
         }
     }
+
+    private List<Card> compareCenterCard(List<Card>c1,List<Card>c2){
+        handChecker.sortHand(c1);
+        handChecker.sortHand(c1);
+
+        if (c1.get(2).getRank() > c2.get(2).getRank()) {
+            return c1;
+        } else {
+            return c2;
+        }
+    }
+
+    public List<Card> compareFourOfAKind(List<Card>c1, List<Card>c2){
+        return compareCenterCard(c1,c2);
+
+    }
 }
