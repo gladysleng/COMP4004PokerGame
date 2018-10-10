@@ -183,4 +183,52 @@ public class HandCheckerTest {
         });
         assertEquals(true, handChecker.isFourOfAKind(c));
     }
+
+    @org.junit.Test
+    public void isStraightKingAce234Test() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {1, 13},
+                {3, 2},
+                {4, 3},
+                {2, 4}
+        });
+        assertEquals(false, handChecker.isStraight(c));
+    }
+
+    @org.junit.Test
+    public void isStraight_Ace2345Test() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {1, 5},
+                {3, 2},
+                {4, 3},
+                {2, 4}
+        });
+        assertEquals(true, handChecker.isStraight(c));
+    }
+
+    @org.junit.Test
+    public void isStraightTenToAceTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {1, 13},
+                {3, 10},
+                {4, 11},
+                {2, 12}
+        });
+        assertEquals(true, handChecker.isStraight(c));
+    }
+
+    @org.junit.Test
+    public void isStraightAceWithTwoButNotStraightTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {1, 13},
+                {3, 3},
+                {4, 11},
+                {2, 2}
+        });
+        assertEquals(false, handChecker.isStraight(c));
+    }
 }
