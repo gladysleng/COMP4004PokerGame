@@ -118,4 +118,27 @@ public class HandChecker {
         return false;
     }
 
+    //check for straight
+    public boolean isStraight(List<Card> c) {
+        if (validSize(c)) {
+            sortHand(c);
+            if (c.get(c.size() - 1).getRank() == 14 && c.get(0).getRank() == 2) { // if Ace involve, change to rank 1
+                c.get(c.size() - 1).setRank(1);
+                sortHand(c);
+            }
+            //check if the rank are +1 of the previous one
+            for (int i = 0; i < c.size() - 1; i++) {
+                if ((c.get(i + 1).getRank()) != (((c.get(i)).getRank()) + 1)) {
+                    if (c.get(0).getRank() == 1) {  // if not straight flush, change Ace to rank 14 again
+                        c.get(0).setRank(14);
+                    }
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        return false;
+    }
+
 }
