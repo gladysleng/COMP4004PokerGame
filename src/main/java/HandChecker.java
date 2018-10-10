@@ -1,6 +1,7 @@
-
+import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -324,4 +325,26 @@ public class HandChecker {
         }
         return false;
     }
+
+
+    public boolean oneCardFromFlush(List<Card> c) {
+        if (validSize(c)) {
+            HashMap<Integer, Integer> suitBucket = new HashMap<Integer, Integer>();
+            Integer count;
+            for (Card currentCard : c) {
+                count = suitBucket.get(currentCard.getSuit());
+                if (count == null) {
+                    count = 0;
+                }
+                suitBucket.put(currentCard.getSuit(), ++count);
+            }
+
+            for (Map.Entry<Integer, Integer> entry : suitBucket.entrySet()) {
+                if (entry.getValue() == 4) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
 }
