@@ -231,4 +231,66 @@ public class HandCheckerTest {
         });
         assertEquals(false, handChecker.isStraight(c));
     }
+
+    @org.junit.Test
+    public void isThreeOfAKind_XYAAATest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {1, 14},
+                {3, 3},
+                {4, 2},
+                {4, 14}
+        });
+        assertEquals(true, handChecker.isThreeOfAKind(c));
+    }
+
+    @org.junit.Test
+    public void isThreeOfAKind_AAA78Test() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 7},
+                {3, 3},
+                {1, 8},
+                {4, 3},
+                {2, 3}
+        });
+        assertEquals(true, handChecker.isThreeOfAKind(c));
+    }
+
+    @org.junit.Test
+    public void isThreeOfAKind_XAAAYTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {1, 7},
+                {2, 3},
+                {3, 7},
+                {4, 7}
+
+        });
+        assertEquals(true, handChecker.isThreeOfAKind(c));
+    }
+
+    @org.junit.Test
+    public void isThreeOfAKind_NotFourOfAKindTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {1, 7},
+                {3, 7},
+                {4, 7},
+                {2, 7}
+        });
+        assertEquals(false, handChecker.isThreeOfAKind(c));
+    }
+
+    @org.junit.Test
+    public void isThreeOfAKind_NotFullHouseTest() {
+        List<Card> c = CardTestHelper.createHand(new int[][]{
+                {2, 14},
+                {1, 14},
+                {3, 7},
+                {4, 7},
+                {2, 7}
+        });
+        assertEquals(false, handChecker.isThreeOfAKind(c));
+    }
+
 }
